@@ -25,7 +25,7 @@ import android.widget.Toast;
 public class Setting extends Activity implements
 		android.view.View.OnClickListener {
 	private Button btn_save;
-	private EditText stu_no;
+    private EditText stu_no;
 	private EditText stu_mm;
 	private EditText jsz_no;
 	private EditText jsz_mm;

@@ -8,11 +8,13 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import com.rex.yangtzeu.R;
 import com.rex.yangtzeu.Yangtzeu;
 import com.rex.yangtzeu.config.Urls;
 import com.rex.yangtzeu.http.YuHttp;
+import com.rex.yangtzeu.regex.CetRegex;
 import com.rex.yangtzeu.regex.JwcRegex;
 
 /**
@@ -21,6 +23,8 @@ import com.rex.yangtzeu.regex.JwcRegex;
 public class CetScore extends Activity implements
         android.view.View.OnClickListener{
     private Button get_score_btn;
+    private EditText cet_number;
+    private EditText stu_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,9 @@ public class CetScore extends Activity implements
         });
 
         get_score_btn.setOnClickListener(this);
+
+        cet_number = (EditText) findViewById(R.id.number);
+        stu_name = (EditText) findViewById(R.id.name);
     }
 
     /**
@@ -63,6 +70,14 @@ public class CetScore extends Activity implements
     @Override
     public void onClick(View view) {
         if (view == get_score_btn) {
+            if(15 != cet_number.getText().toString().length()){
+                Toast.makeText(Yangtzeu.getInstance(),"准考证号为15位！",Toast.LENGTH_LONG).show();
+                return;
+            }
+            if (stu_name.getText().toString().equals("")){
+                Toast.makeText(Yangtzeu.getInstance(),"姓名不能为空！",Toast.LENGTH_LONG).show();
+                return;
+            }
             new NetTask().execute("cet");
         }
 
@@ -75,7 +90,11 @@ public class CetScore extends Activity implements
 
         protected void onPostExecute(String result) {
             if(this.optype == "cet"){ // 渲染数据
-                Toast.makeText(Yangtzeu.getInstance(),cet_result,Toast.LENGTH_LONG).show(); // TODO
+                if (CetRegex.get_error(cet_result)){
+                    Toast.makeText(Yangtzeu.getInstance(),"未查到！",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(Yangtzeu.getInstance(),"TODO",Toast.LENGTH_LONG).show();
+                }
             }
         }
 
@@ -83,10 +102,12 @@ public class CetScore extends Activity implements
         protected String doInBackground(String... arg0) {
             this.optype = arg0[0];
             if(arg0[0] == "cet"){ // 网络获取数据
+                String number = cet_number.getText().toString();
+                String name = stu_name.getText().toString();
 
                 try {
                     YuHttp.referer = "http://www.chsi.com.cn/cet/";
-                    cet_result = YuHttp.get("http://www.chsi.com.cn/cet/query?zkzh=123456789012345&xm=%E6%9D%8E%E4%BF%8A", "utf-8"); //TODO
+                    cet_result = YuHttp.get("http://www.chsi.com.cn/cet/query?zkzh="+number+"&xm="+name, "utf-8"); //TODO
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
