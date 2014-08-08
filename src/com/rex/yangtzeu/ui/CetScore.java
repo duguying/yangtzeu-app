@@ -17,6 +17,8 @@ import com.rex.yangtzeu.http.YuHttp;
 import com.rex.yangtzeu.regex.CetRegex;
 import com.rex.yangtzeu.regex.JwcRegex;
 
+import java.net.URLEncoder;
+
 /**
  * Created by rex on 2014/7/30.
  */
@@ -106,8 +108,10 @@ public class CetScore extends Activity implements
                 String name = stu_name.getText().toString();
 
                 try {
-                    YuHttp.referer = "http://www.chsi.com.cn/cet/";
-                    cet_result = YuHttp.get("http://www.chsi.com.cn/cet/query?zkzh="+number+"&xm="+name, "utf-8"); //TODO
+                    YuHttp.referer = Urls.cet_score;
+                    String url = Urls.cet_score + "query?zkzh=" + number + "&xm=" + URLEncoder.encode(name, "utf-8");
+                    cet_result = YuHttp.get(url, "utf-8");
+                    // Log.i("CET",url + "\n" + cet_result);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

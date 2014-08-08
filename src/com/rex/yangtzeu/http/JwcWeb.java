@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.rex.yangtzeu.Yangtzeu;
+import com.rex.yangtzeu.config.Urls;
 import com.rex.yangtzeu.regex.JwcRegex;
 import com.rex.yangtzeu.sqlite.ComDB;
 import com.rex.yangtzeu.utils.EncrypAES;
@@ -11,7 +12,7 @@ import com.rex.yangtzeu.utils.EncrypAES;
 public class JwcWeb {
 	public static boolean jwc_login() {
 		try {
-			String test_response = YuHttp.get("http://jwc.yangtzeu.edu.cn:8080/login.aspx", "gb2312");
+			String test_response = YuHttp.get(Urls.jwc_login_page, "gb2312");
 			JwcRegex.get_viewstate_keys(test_response);
 			
 			Map<String,String> data = new HashMap<String,String>();
@@ -22,7 +23,7 @@ public class JwcWeb {
 			data.put("selKind","1");
 			data.put("btLogin", null);
 			
-			String login_result = YuHttp.post("http://jwc.yangtzeu.edu.cn:8080/login.aspx", data, "gb2312", false);
+			String login_result = YuHttp.post(Urls.jwc_login_page, data, "gb2312", false);
 			
 			return JwcRegex.login_success(login_result);
 			

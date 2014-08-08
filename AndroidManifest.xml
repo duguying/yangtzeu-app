@@ -120,6 +120,12 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Black.NoTitleBar" >
         </activity>
+        <activity
+                android:name="com.rex.yangtzeu.ui.Kebiao"
+                android:label="@string/title_kebiao_score"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.Black.NoTitleBar" >
+        </activity>
     </application>
 
 </manifest>

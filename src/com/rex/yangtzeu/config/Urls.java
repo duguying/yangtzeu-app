@@ -12,17 +12,12 @@ package com.rex.yangtzeu.config;
 public class Urls {
 
 	// 教务处
-	public static String jwc_home = "http://jwc.yangtzeu.edu.cn:8080/";
-	public static String jwc_login_page = jwc_home + "login.aspx";
-	public static String jwc_login_response = jwc_home + "login.aspx";
-	public static String jwc_cjcx_page = jwc_home + "cjcx.aspx";
-	public static String jwc_search_student_page = jwc_home + "student.aspx";
-	public static String jwc_search_student_response = jwc_home
-			+ "student.aspx";
-	public static String jwc_search_class_student_page = jwc_home
-			+ "student.aspx";
-	public static String jwc_search_class_student_response = jwc_home
-			+ "student.aspx";
+	public static String jwc_home = "http://jwc.yangtzeu.edu.cn:8080/"; // 首页
+	public static String jwc_login_page = jwc_home + "login.aspx";  // 登录
+	public static String jwc_cjcx_page = jwc_home + "cjcx.aspx";    // 成绩查询
+    public static String jwc_xkcx_page = jwc_home + "xkcx.aspx";    // 选课查询
+    public static String jwc_xkxx_page = jwc_home + "xkinfo.aspx";  // 选课信息
+    public static String jwc_kbcx_page = jwc_home + "kb.aspx";      // 课表查询
 
 	// 长大首页
 	public static String yz_home = "http://www.yangtzeu.edu.cn/";
@@ -31,8 +26,7 @@ public class Urls {
 	// 长大在线
 	public static String yuol_home = "http://online.yangtzeu.edu.cn/";
 
-	// cet 查分API格式如下
-	// http://www.chsi.com.cn/cet/query?zkzh=420611122213619&xm=李俊
-	public static String cet_score = "http://www.chsi.com.cn/cet/query";
+	// cet 查分
+	public static String cet_score = "http://www.chsi.com.cn/cet/";
 
 }

@@ -30,7 +30,6 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 	private LinearLayout btn2;
 	private LinearLayout btn3;
 	private LinearLayout btn4;
-	private LinearLayout btn5;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +37,9 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 		setContentView(R.layout.jwc);
 		
 		btn1 = (LinearLayout) this.findViewById(R.id.jwc_chafen);
-		btn2 = (LinearLayout) this.findViewById(R.id.find_stu);
+		btn2 = (LinearLayout) this.findViewById(R.id.cet_btn);
 		btn3 = (LinearLayout) this.findViewById(R.id.ch_cls);
 		btn4 = (LinearLayout) this.findViewById(R.id.kebiao_btn);
-		btn5 = (LinearLayout) this.findViewById(R.id.cet_btn);
 		
 		btn1.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
@@ -91,24 +89,11 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 				return false;
 			}
 		});
-		btn5.setOnTouchListener(new OnTouchListener() {
-			public boolean onTouch(View v, MotionEvent event) {
-				if (event.getAction() == MotionEvent.ACTION_DOWN) {
-					// 按下时背景透明
-					v.setBackgroundColor(Color.parseColor("#00000000"));
-				} else if (event.getAction() == MotionEvent.ACTION_UP) {
-					// 抬起时白色
-					v.setBackgroundColor(Color.parseColor("#ffffff"));
-				}
-				return false;
-			}
-		});
 
 		btn1.setOnClickListener(this);
 		btn2.setOnClickListener(this);
 		btn3.setOnClickListener(this);
 		btn4.setOnClickListener(this);
-		btn5.setOnClickListener(this);
 	}
 
 
@@ -136,16 +121,24 @@ public class Jwc extends Activity implements android.view.View.OnClickListener {
 			new NetTask().execute("load_page");
 		}else if (arg0 == btn2){
             redirect_to("cet");
+        }else if (arg0 == btn3){
+
+        }else if (arg0 == btn4){
+            redirect_to("kebiao");
         }
 	}
 	
 	public void redirect_to(String tag){
-		if(tag == "jwc"){
+		if(tag.equals("jwc")){
 			Intent intent = new Intent(this, JwcChafen.class);
 			startActivity(intent);
 			overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
-		}else if (tag == "cet"){
+		}else if (tag.equals("cet")){
             Intent intent = new Intent(this, CetScore.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+        }else if (tag.equals("kebiao")){
+            Intent intent = new Intent(this, Kebiao.class);
             startActivity(intent);
             overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
         }

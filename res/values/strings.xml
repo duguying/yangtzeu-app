@@ -36,5 +36,6 @@
     <string name="welcome_about_project2">github:duguying/yangtzeu-app\nopensource project, code donation is welcome</string>
     <string name="title_activity_score_list">ScoreList</string>
     <string name="title_cet_score">CET Score</string>
+    <string name="title_kebiao_score">课表</string>
 
 </resources>
