@@ -12,7 +12,7 @@ package com.rex.yangtzeu.config;
 public class Urls {
 
 	// 教务处
-	public static String jwc_home = "http://jwc.yangtzeu.edu.cn:8080/"; // 首页
+	public static String jwc_home = "http://jwc2.yangtzeu.edu.cn:8080/"; // 首页
 	public static String jwc_login_page = jwc_home + "login.aspx";  // 登录
 	public static String jwc_cjcx_page = jwc_home + "cjcx.aspx";    // 成绩查询
     public static String jwc_xkcx_page = jwc_home + "xkcx.aspx";    // 选课查询

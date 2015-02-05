@@ -15,9 +15,16 @@ public class CetRegex {
      * @return true为错误
      */
     public static boolean get_error(String content){
-        String pdl_pregex = "class=\"error alignC"; //"<table ([\\d\\D]+)</table>";
+        String pdl_pregex = "class=\"error alignC";
 
         Pattern pat1 = Pattern.compile(pdl_pregex);
+        Matcher mat1 = pat1.matcher(content);
+        return mat1.find();
+    }
+
+    public static boolean can_get_score(String content){
+        String cgs_mark_pregex = "查询结果";
+        Pattern pat1 = Pattern.compile(cgs_mark_pregex);
         Matcher mat1 = pat1.matcher(content);
         return mat1.find();
     }
